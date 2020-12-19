@@ -111,10 +111,10 @@ export PATH="/usr/local/sbin:$PATH"
 # HomeBrew END
 
 # GCC
-alias gcc='gcc-9'
-alias cc='gcc-9'
-alias g++='g++-9'
-alias c++='c++-9'
+# alias gcc='gcc-9'
+# alias cc='gcc-9'
+# alias g++='g++-9'
+# alias c++='c++-9'
 # GCC END
 
 # PYENV

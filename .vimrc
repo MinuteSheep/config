@@ -1,4 +1,5 @@
-" Author: MinuteSheep<minutesheep@163.com>"  __  __ ____        _   ___     ___
+" Author: MinuteSheep<minutesheep@163.com>"  
+"
 " |  \/  / ___|      | \ | \ \   / (_)_ __ ___
 " | |\/| \___ \ _____|  \| |\ \ / /| | '_ ` _ \
 " | |  | |___) |_____| |\  | \ V / | | | | | | |
@@ -94,7 +95,7 @@ map R :call CompileAndRun()<CR>
 func! CompileAndRun()
         exec "w"
         if &filetype == 'c'
-                exec "AsyncRun! gcc % -o %< && ./%<"
+                exec "AsyncRun! cc % -o %< && ./%< && rm -rf %<"
                 exec "copen | wincmd p"
         elseif &filetype == 'cpp'
                 set splitbelow
@@ -166,6 +167,7 @@ Plug 'crusoexia/vim-monokai'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'jdkanani/vim-material-theme'
 Plug 'lycuid/vim-far'
+
 " File navigation
 if has('nvim')
         Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -178,6 +180,9 @@ Plug 'kristijanhusak/defx-icons'
 
 " Table
 Plug 'dhruvasagar/vim-table-mode'
+
+" Auto gen tags for ctags
+Plug 'ludovicchabant/vim-gutentags'
 
 " Rainbow
 Plug 'luochen1990/rainbow'
@@ -195,7 +200,7 @@ call plug#end()
 " -------- -------- -------- -------- -------- --------
 "  Defx
 " -------- -------- -------- -------- -------- --------
-source ~/.vim/defx.vim
+source ~/.vim/.defx.vim
 noremap <silent> tt :Defx<CR>
 
 
@@ -285,6 +290,31 @@ let g:VM_maps["Select Cursor Up"]   = '<C-k>'
 "  Skin
 " -------- -------- -------- -------- -------- --------
 " colorscheme far
+
+
+" -------- -------- -------- -------- -------- --------
+"  Gutentags
+" -------- -------- -------- -------- -------- --------
+" gutentags搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归 "
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
+
+" 所生成的数据文件的名称 "
+let g:gutentags_ctags_tagfile = '.tags'
+
+" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录 "
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+" 检测 ~/.cache/tags 不存在就新建 "
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+
+" 配置 ctags 的参数 "
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+
 
 " -------- -------- -------- -------- -------- --------
 "  Cursor settings
