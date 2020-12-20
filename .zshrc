@@ -3,6 +3,8 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/minutesheep/.oh-my-zsh"
+export LANG="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -104,6 +106,10 @@ export https_proxy=http://127.0.0.1:1087
 export no_proxy="127.0.0.1, localhost, .cn, .douban.com"
 # PROXY END
 
+# VIM
+alias vi=/usr/local/bin/vim
+alias vim=/usr/local/bin/vim
+
 # HomeBrew
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 export PATH="/usr/local/bin:$PATH"
@@ -121,7 +127,7 @@ export PATH="/usr/local/sbin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
+        eval "$(pyenv init -)"
 fi
 eval "$(pyenv virtualenv-init -)"
 # PYENV

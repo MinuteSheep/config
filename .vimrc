@@ -43,6 +43,7 @@ set backspace=indent,start
 " 开启真色,MacOs Terminal不需要开启真色
 " set termguicolors
 " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+language en_US
 
 " -------- -------- -------- -------- -------- --------
 "  基本键位映射
@@ -144,6 +145,9 @@ Plug 'AndrewRadev/switch.vim'  " press gs to switch ture/false
 
 " Commenter
 Plug 'scrooloose/nerdcommenter'
+
+" Terminus
+Plug 'wincent/terminus'
 
 " Auto Complete
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -325,6 +329,15 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 "  4 -> solid underscore
 "  5 -> blinking vertical bar
 "  6 -> solid vertical bar
-let &t_SI.="\e[5 q" "SI = INSERT mode
-let &t_SR.="\e[4 q" "SR = REPLACE mode
-let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
+" let &t_SI.="\e[5 q" "SI = INSERT mode
+" let &t_SR.="\e[3 q" "SR = REPLACE mode
+" let &t_EI.="\e[3 q" "EI = NORMAL mode (ELSE)
+" let g:TerminusNormalCursorShap=2
+set guicursor="n-v-c:block-Cursor/lCursor,
+					ve:ver35-Cursor,
+					o:hor50-Cursor,
+					i-ci:ver25-Cursor/lCursor,
+					r-cr:hor20-Cursor/lCursor,
+					sm:block-Cursor
+					-blinkwait175-blinkoff150-blinkon175"
+
