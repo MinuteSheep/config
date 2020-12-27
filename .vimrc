@@ -28,9 +28,11 @@ set number
 " 自动设当前编辑文件所在目录为当前工作目录
 " set autochdir
 " 高亮第81列
-" set cc=81
+set cc=81
 " 80字符自动换行
 set textwidth=80
+" 中文80字符自动换行
+set formatoptions+=mM
 " tab大小
 set ts=4
 set expandtab
@@ -147,7 +149,7 @@ Plug 'AndrewRadev/switch.vim'  " press gs to switch ture/false
 Plug 'scrooloose/nerdcommenter'
 
 " Terminus
-Plug 'wincent/terminus'
+" Plug 'wincent/terminus'
 
 " Auto Complete
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -329,15 +331,12 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 "  4 -> solid underscore
 "  5 -> blinking vertical bar
 "  6 -> solid vertical bar
-" let &t_SI.="\e[5 q" "SI = INSERT mode
-" let &t_SR.="\e[3 q" "SR = REPLACE mode
-" let &t_EI.="\e[3 q" "EI = NORMAL mode (ELSE)
-" let g:TerminusNormalCursorShap=2
-set guicursor="n-v-c:block-Cursor/lCursor,
-					ve:ver35-Cursor,
-					o:hor50-Cursor,
-					i-ci:ver25-Cursor/lCursor,
-					r-cr:hor20-Cursor/lCursor,
-					sm:block-Cursor
-					-blinkwait175-blinkoff150-blinkon175"
-
+" if empty($TMUX)
+  " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  " let &t_EI = "\<Esc>]50;CursorShape=2\x7"
+  " let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+" else
+  " let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  " let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+  " let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+" endif
