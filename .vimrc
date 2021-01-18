@@ -28,7 +28,7 @@ set number
 " 自动设当前编辑文件所在目录为当前工作目录
 " set autochdir
 " 高亮第81列
-set cc=81
+" set cc=81
 " 80字符自动换行
 set textwidth=80
 " 中文80字符自动换行
@@ -157,6 +157,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'godlygeek/tabular'  " :Tabular/: or :Tabular/=
 
 " Markdown
+Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 " LaTeX

@@ -103,18 +103,40 @@ source $ZSH/oh-my-zsh.sh
 # PROXY
 export http_proxy=http://127.0.0.1:1087
 export https_proxy=http://127.0.0.1:1087
-export no_proxy="127.0.0.1, localhost, .cn, .douban.com"
+export no_proxy="127.0.0.1, localhost, .cn, .douban.com, .doubanio.com"
 # PROXY END
 
 # VIM
 alias vi=/usr/local/bin/vim
 alias vim=/usr/local/bin/vim
+# VIM END
+
+# FD
+alias find=fd
+# FD END
+
+# RIPGREP
+alias grep=rg
+# RIPGREP END
+
+# BAT
+alias cat=bat
+# BAT END
+
+# HTOP
+alias top=htop
+# HTOP END
+
+# TLDR
+alias help=tldr
+# TLDR END
 
 # HomeBrew
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 # HomeBrew END
+
 
 # GCC
 # alias gcc='gcc-9'
