@@ -131,6 +131,10 @@ alias top=htop
 alias help=tldr
 # TLDR END
 
+# CLOC
+alias wc=cloc
+# CLOC END
+
 # HomeBrew
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
 export PATH="/usr/local/bin:$PATH"
