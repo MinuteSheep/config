@@ -163,6 +163,9 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 " LaTeX
 Plug 'lervag/vimtex'
 
+" Indexer
+Plug 'alvan/vim-indexer'
+
 " Formatter
 Plug 'Chiel92/vim-autoformat'
 
@@ -187,9 +190,6 @@ Plug 'kristijanhusak/defx-icons'
 
 " Table
 Plug 'dhruvasagar/vim-table-mode'
-
-" Auto gen tags for ctags
-Plug 'ludovicchabant/vim-gutentags'
 
 " Rainbow
 Plug 'luochen1990/rainbow'
@@ -300,27 +300,47 @@ let g:VM_maps["Select Cursor Up"]   = '<C-k>'
 
 
 " -------- -------- -------- -------- -------- --------
-"  Gutentags
+"  Indexer
 " -------- -------- -------- -------- -------- --------
-" gutentags搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归 "
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
+" Project root folders, used to identify ancestor path of project root directory.
+" leroot folders, used to identify ancestor path of project root directory.
+let g:indexer_root_folders = [$HOME]
 
-" 所生成的数据文件的名称 "
-let g:gutentags_ctags_tagfile = '.tags'
+" Project root markers, used to identify project root directory.
+let g:indexer_root_markers = ['.git']
 
-" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录 "
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
-" 检测 ~/.cache/tags 不存在就新建 "
-if !isdirectory(s:vim_tags)
-   silent! call mkdir(s:vim_tags, 'p')
-endif
+" JSON formatted configuration file which located in the project root
+" directory, makes you could specify different options for each project.
+let g:indexer_root_setting = 'indexer.json'
 
-" 配置 ctags 的参数 "
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+" Enabled user modules.
+let g:indexer_user_modules = ['log', 'tag']
 
+" Module: tag
+"
+" This module can also read the configuration of the current project.
+" For example you can have a JSON formatted file in the project directory:
+"
+" > indexer.json:
+" {
+"    "tags_watches": ["*.php"],
+"    "tags_command": "ctags",
+"    "tags_options": "-R --sort=yes --languages=php",
+"    "tags_savedir": "~/.vim_indexer_tags/",
+"    "tags_handler_locate": ["locate"],
+"    "tags_handler_reload": ["reload", "-1"],
+"    "tags_handler_update": ["update"],
+" }
+"
+" And/Or settings in global:
+"
+let g:indexer_tags_watches = ["*.c", "*.h", "*.c++", "*.cpp", "*.php", "*.py"]
+let g:indexer_tags_command = "ctags"
+let g:indexer_tags_options = "-R --sort=yes --c++-kinds=+p+l --fields=+iaS --extra=+q --languages=c,c++,php,python"
+let g:indexer_tags_savedir = "~/.vim_indexer_tags/"
+let g:indexer_tags_handler_locate = ["locate"]
+let g:indexer_tags_handler_reload = ["reload", "-1"]
+let g:indexer_tags_handler_update = ["update"]
 
 
 " -------- -------- -------- -------- -------- --------

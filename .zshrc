@@ -159,3 +159,5 @@ eval "$(pyenv virtualenv-init -)"
 # PYENV
 
 export JAVA_HOME=$(/usr/libexec/java_home)
+
+export PATH="/usr/local/opt/node@12/bin:$PATH"
