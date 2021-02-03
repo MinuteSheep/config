@@ -101,8 +101,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 # PROXY
-export http_proxy=http://127.0.0.1:1087
-export https_proxy=http://127.0.0.1:1087
+export http_proxy=http://192.168.0.104:1087
+export https_proxy=http://192.168.0.104:1087
 export no_proxy="127.0.0.1, localhost, .cn, .douban.com, .doubanio.com"
 # PROXY END
 
@@ -132,11 +132,12 @@ alias help=tldr
 # TLDR END
 
 # CLOC
-alias wc=cloc
+# alias wc=cloc
 # CLOC END
 
 # HomeBrew
-export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+# export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 # HomeBrew END
@@ -148,6 +149,15 @@ export PATH="/usr/local/sbin:$PATH"
 # alias g++='g++-9'
 # alias c++='c++-9'
 # GCC END
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+
+# LLVM@8
+export PATH="/usr/local/opt/llvm@8/bin:$PATH"
+# export LDFLAGS="-L/usr/local/opt/llvm@8/lib"
+# export CPPFLAGS="-I/usr/local/opt/llvm@8/include"
+export LLVM_CONFIG="/usr/local/opt/llvm@8/bin/llvm-config"
+# LLVM END
 
 # PYENV
 export PYENV_ROOT="$HOME/.pyenv"

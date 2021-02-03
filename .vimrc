@@ -56,8 +56,9 @@ noremap J 5j
 noremap K 5k
 noremap U <nop>
 noremap U J
+noremap bp :bp<CR>
+noremap bn :bn<CR>
 noremap s <nop>
-inoremap <S-CR> <Esc>o
 let mapleader=" "
 
 " -------- -------- -------- -------- -------- --------
