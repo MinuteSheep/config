@@ -1,4 +1,4 @@
-" Author: MinuteSheep<minutesheep@163.com>"  
+" Author: MinuteSheep<minutesheep@163.com>"
 "
 " |  \/  / ___|      | \ | \ \   / (_)_ __ ___
 " | |\/| \___ \ _____|  \| |\ \ / /| | '_ ` _ \
@@ -164,14 +164,12 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 " LaTeX
 Plug 'lervag/vimtex'
 
-" Indexer
-Plug 'alvan/vim-indexer'
-
 " Formatter
 Plug 'Chiel92/vim-autoformat'
 
 " Visual Multi
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
 
 " Skin
 Plug 'crusoexia/vim-monokai'
@@ -300,65 +298,128 @@ let g:VM_maps["Select Cursor Up"]   = '<C-k>'
 " colorscheme far
 
 
-" -------- -------- -------- -------- -------- --------
-"  Indexer
-" -------- -------- -------- -------- -------- --------
-" Project root folders, used to identify ancestor path of project root directory.
-" leroot folders, used to identify ancestor path of project root directory.
-let g:indexer_root_folders = [$HOME]
+" " -------- -------- -------- -------- -------- --------
+" "  Coc
+" " -------- -------- -------- -------- -------- --------
+" " TextEdit might fail if hidden is not set.
+" set hidden
 
-" Project root markers, used to identify project root directory.
-let g:indexer_root_markers = ['.git']
+" " Some servers have issues with backup files, see #649.
+" set nobackup
+" set nowritebackup
+" " Give more space for displaying messages.
+" set cmdheight=2
 
-" JSON formatted configuration file which located in the project root
-" directory, makes you could specify different options for each project.
-let g:indexer_root_setting = 'indexer.json'
+" " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" " delays and poor user experience.
+" set updatetime=300
 
-" Enabled user modules.
-let g:indexer_user_modules = ['log', 'tag']
-
-" Module: tag
-"
-" This module can also read the configuration of the current project.
-" For example you can have a JSON formatted file in the project directory:
-"
-" > indexer.json:
-" {
-"    "tags_watches": ["*.php"],
-"    "tags_command": "ctags",
-"    "tags_options": "-R --sort=yes --languages=php",
-"    "tags_savedir": "~/.vim_indexer_tags/",
-"    "tags_handler_locate": ["locate"],
-"    "tags_handler_reload": ["reload", "-1"],
-"    "tags_handler_update": ["update"],
-" }
-"
-" And/Or settings in global:
-"
-let g:indexer_tags_watches = ["*.c", "*.h", "*.c++", "*.cpp", "*.php", "*.py"]
-let g:indexer_tags_command = "ctags"
-let g:indexer_tags_options = "-R --sort=yes --c++-kinds=+p+l --fields=+iaS --extra=+q --languages=c,c++,php,python"
-let g:indexer_tags_savedir = "~/.vim_indexer_tags/"
-let g:indexer_tags_handler_locate = ["locate"]
-let g:indexer_tags_handler_reload = ["reload", "-1"]
-let g:indexer_tags_handler_update = ["update"]
-
-
-" -------- -------- -------- -------- -------- --------
-"  Cursor settings
-" -------- -------- -------- -------- -------- --------
-"  1 -> blinking block
-"  2 -> solid block
-"  3 -> blinking underscore
-"  4 -> solid underscore
-"  5 -> blinking vertical bar
-"  6 -> solid vertical bar
-" if empty($TMUX)
-  " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  " let &t_EI = "\<Esc>]50;CursorShape=2\x7"
-  " let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+" " Don't pass messages to |ins-completion-menu|.
+" set shortmess+=c
+" " Always show the signcolumn, otherwise it would shift the text each time
+" " diagnostics appear/become resolved.
+" if has("patch-8.1.1564")
+        " " Recently vim can merge signcolumn and number column into one
+        " set signcolumn=number
 " else
-  " let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  " let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-  " let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+        " set signcolumn=yes
 " endif
+
+" " Use tab for trigger completion with characters ahead and navigate.
+" " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" " other plugin before putting this into your config.
+" inoremap <silent><expr> <TAB>
+                        " \ pumvisible() ? "\<C-n>" :
+                        " \ <SID>check_back_space() ? "\<TAB>" :
+                        " \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" function! s:check_back_space() abort
+        " let col = col('.') - 1
+        " return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+
+
+" " Make <CR> auto-select the first completion item and notify coc.nvim to
+" " format on enter, <cr> could be remapped by other vim plugin
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                        " \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" " Use `g[` and `g]` to navigate diagnostics
+" " Use `:CocDiagnostics` to get all diagnostics of current buffer in location
+" " list.
+" nmap <silent> g[ <Plug>(coc-diagnostic-prev)
+" nmap <silent> g] <Plug>(coc-diagnostic-next)1
+
+" " GoTo code navigation.
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+
+
+" " Use gk to show documentation in preview window.
+" nnoremap <silent> gk :call <SID>show_documentation()<CR>
+" function! s:show_documentation()
+        " if (index(['vim','help'], &filetype) >= 0)
+                " execute 'h '.expand('<cword>')
+        " elseif (coc#rpc#ready())
+                " call CocActionAsync('doHover')
+        " else
+                " execute '!' . &keywordprg . " " . expand('<cword>')
+        " endif
+" endfunction
+
+" " Highlight the symbol and its references when holding the cursor.
+" autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" " Symbol renaming.
+" nmap <leader>rn <Plug>(coc-rename)
+"
+
+
+
+" -------- -------- -------- -------- -------- --------
+"  Close mouse wheel
+" -------- -------- -------- -------- -------- --------
+set mouse=a
+
+nmap <ScrollWheelUp> <nop>
+nmap <S-ScrollWheelUp> <nop>
+nmap <C-ScrollWheelUp> <nop>
+nmap <ScrollWheelDown> <nop>
+nmap <S-ScrollWheelDown> <nop>
+nmap <C-ScrollWheelDown> <nop>
+nmap <ScrollWheelLeft> <nop>
+nmap <S-ScrollWheelLeft> <nop>
+nmap <C-ScrollWheelLeft> <nop>
+nmap <ScrollWheelRight> <nop>
+nmap <S-ScrollWheelRight> <nop>
+nmap <C-ScrollWheelRight> <nop>
+
+imap <ScrollWheelUp> <nop>
+imap <S-ScrollWheelUp> <nop>
+imap <C-ScrollWheelUp> <nop>
+imap <ScrollWheelDown> <nop>
+imap <S-ScrollWheelDown> <nop>
+imap <C-ScrollWheelDown> <nop>
+imap <ScrollWheelLeft> <nop>
+imap <S-ScrollWheelLeft> <nop>
+imap <C-ScrollWheelLeft> <nop>
+imap <ScrollWheelRight> <nop>
+imap <S-ScrollWheelRight> <nop>
+imap <C-ScrollWheelRight> <nop>
+
+vmap <ScrollWheelUp> <nop>
+vmap <S-ScrollWheelUp> <nop>
+vmap <C-ScrollWheelUp> <nop>
+vmap <ScrollWheelDown> <nop>
+vmap <S-ScrollWheelDown> <nop>
+vmap <C-ScrollWheelDown> <nop>
+vmap <ScrollWheelLeft> <nop>
+vmap <S-ScrollWheelLeft> <nop>
+vmap <C-ScrollWheelLeft> <nop>
+vmap <ScrollWheelRight> <nop>
+vmap <S-ScrollWheelRight> <nop>
+vmap <C-ScrollWheelRight> <nop>
+

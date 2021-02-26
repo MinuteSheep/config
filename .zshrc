@@ -101,9 +101,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 # PROXY
-export http_proxy=http://192.168.0.104:1087
-export https_proxy=http://192.168.0.104:1087
-export no_proxy="127.0.0.1, localhost, .cn, .douban.com, .doubanio.com"
+# export http_proxy=http://192.168.0.104:1087
+# export https_proxy=http://192.168.0.104:1087
+export https_proxy=http://127.0.0.1:7890 
+export http_proxy=http://127.0.0.1:7890 
+# export no_proxy="127.0.0.1, localhost, .cn, .douban.com, .doubanio.com"
 # PROXY END
 
 # VIM
@@ -149,13 +151,16 @@ export PATH="/usr/local/sbin:$PATH"
 # alias g++='g++-9'
 # alias c++='c++-9'
 # GCC END
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+
+
+export LDFLAGS="-L/usr/local/opt/zlib/lib"
+export CPPFLAGS="-I/usr/local/opt/zlib/include"
+export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
 
 # LLVM@8
 export PATH="/usr/local/opt/llvm@8/bin:$PATH"
-# export LDFLAGS="-L/usr/local/opt/llvm@8/lib"
-# export CPPFLAGS="-I/usr/local/opt/llvm@8/include"
+export LDFLAGS="-L/usr/local/opt/llvm@8/lib"
+export CPPFLAGS="-I/usr/local/opt/llvm@8/include"
 export LLVM_CONFIG="/usr/local/opt/llvm@8/bin/llvm-config"
 # LLVM END
 
