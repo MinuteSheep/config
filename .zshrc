@@ -10,7 +10,10 @@ export LC_CTYPE="en_US.UTF-8"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="ys"
+ZSH_THEME=""
+autoload -U promptinit; promptinit
+zstyle :prompt:pure:git:stash show yes
+prompt pure
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -146,10 +149,10 @@ export PATH="/usr/local/sbin:$PATH"
 
 
 # GCC
-# alias gcc='gcc-9'
-# alias cc='gcc-9'
-# alias g++='g++-9'
-# alias c++='c++-9'
+alias gcc='gcc-9'
+alias cc='gcc-9'
+alias g++='g++-9'
+alias c++='c++-9'
 # GCC END
 
 
